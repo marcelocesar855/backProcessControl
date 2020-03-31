@@ -4,7 +4,7 @@ const ProcessoModel = require('./models/processo')
 const SetorModel = require('./models/setor')
 const AssuntoModel = require('./models/assunto')
 
-const sequelize = new Sequelize('process_control', 'root', 'root', {
+const sequelize = new Sequelize('process_control', 'root', 'admin', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {

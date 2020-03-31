@@ -1,5 +1,5 @@
 
-const { Caixa } = require('../sequelize');
+const { Caixa, Setor } = require('../sequelize');
 
 module.exports = {
     async store(req, res) {
@@ -23,5 +23,20 @@ module.exports = {
             caixa.destroy()
             res.json(caixa)
         })
+    },
+    async indexBySetor (req, res) {
+        const {setorId} = req.query
+        await Caixa.findAll({
+            where : {setorId : setorId}
+        })
+        .then(datas => res.json(datas))
+    },
+    async indexWithData (req, res) {
+        await Caixa.findAll({
+            include : [{
+                model : Setor
+            }]
+        })
+        .then(datas => res.json(datas))
     }
 }

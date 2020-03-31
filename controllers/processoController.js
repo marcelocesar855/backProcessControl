@@ -29,15 +29,19 @@ module.exports = {
     async indexProcessosWithData (req, res) {
         await Processo.findAll({
             include: [
-                {model: Caixa},
+                {model: Caixa, include : [
+                    {model: Setor}
+                ]},
                 {model: Assunto}
             ]
         })
         .then(data => res.json(data))
     },
     async indexProcessosByParams (req, res) {
-        const { setorId, assuntoId } = req.query;
-        var setorParams = {model: Caixa}
+        const { setorId, assuntoId, numero } = req.body;
+        var setorParams = {model: Caixa, include : [
+            {model: Setor}
+        ]}
         var assuntoParams = {model: Assunto}
         if (setorId) {
             setorParams = {...setorParams, where: {setorId : setorId}}
@@ -45,24 +49,21 @@ module.exports = {
         if (assuntoId) {
             assuntoParams = {...assuntoParams, where: {id : assuntoId}}
         }
-        await Processo.findAll({
+        var params = {
             include: [
-                setorParams,
-                assuntoParams
-            ]
-        })
-        .then(data => res.json(data))
-    },
-    async indexByNumber (req, res) {
-        await Processo.findAll({
-            where : {
+            setorParams,
+            assuntoParams
+        ]}
+        if (numero != '') {
+            params = {...params, where : {
                 [Op.or] : [{
                     numero : {
-                        [Op.substring] : req.body.search
+                        [Op.substring] : numero
                     }
                 }]
-            }
-        })
+            }}
+        }
+        await Processo.findAll(params)
         .then(data => res.json(data))
     }
 }

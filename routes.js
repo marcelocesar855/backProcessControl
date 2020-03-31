@@ -13,9 +13,7 @@ routes.delete('/processo/:id', processoController.destroy)
 
 routes.get('/processos-dados', processoController.indexProcessosWithData)
 
-routes.get('/processos-params', processoController.indexProcessosByParams)
-
-routes.get('/processos-search', processoController.indexByNumber)
+routes.post('/processos-params', processoController.indexProcessosByParams)
 
 //CAIXA
 routes.post('/caixa', caixaController.store)
@@ -25,6 +23,10 @@ routes.get('/caixas', caixaController.index)
 routes.put('/caixa/:id', caixaController.update)
 
 routes.delete('/caixa/:id', caixaController.destroy)
+
+routes.get('/caixas-setor', caixaController.indexBySetor)
+
+routes.get('/caixas-dados', caixaController.indexWithData)
 
 //ASSUNTO
 routes.post('/assunto', assuntoController.store)
@@ -38,7 +40,7 @@ routes.delete('/assunto/:id', assuntoController.destroy)
 //SETOR
 routes.post('/setor', setorController.store)
 
-routes.get('/setors', setorController.index)
+routes.get('/setores', setorController.index)
 
 routes.put('/setor/:id', setorController.update)
 
