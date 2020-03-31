@@ -25,7 +25,7 @@ module.exports = {
         })
     },
     async indexBySetor (req, res) {
-        const {setorId} = req.query
+        const {setorId} = req.body
         await Caixa.findAll({
             where : {setorId : setorId}
         })

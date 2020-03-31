@@ -24,7 +24,7 @@ routes.put('/caixa/:id', caixaController.update)
 
 routes.delete('/caixa/:id', caixaController.destroy)
 
-routes.get('/caixas-setor', caixaController.indexBySetor)
+routes.post('/caixas-setor', caixaController.indexBySetor)
 
 routes.get('/caixas-dados', caixaController.indexWithData)
 
