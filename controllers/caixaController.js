@@ -38,5 +38,25 @@ module.exports = {
             }]
         })
         .then(datas => res.json(datas))
+    },
+    async indexCaixaByParams (req, res) {
+        const { numero, estante, prateleira, setorId } = req.body;
+        var params = {include : [
+            {model: Setor}
+        ]}
+        if (numero != '') {
+            params = {...params, where : {numero : numero}}
+        }
+        if (estante != '') {
+            params = {...params, where : {...params.where, estante : estante}}
+        }
+        if (prateleira != '') {
+            params = {...params, where : {...params.where, prateleira : prateleira}}
+        }
+        if (setorId) {
+            params = {...params, where : {...params.where, setorId : setorId}}
+        }
+        await Caixa.findAll(params)
+        .then(data => res.json(data))
     }
 }

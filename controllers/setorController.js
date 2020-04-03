@@ -1,5 +1,7 @@
 
-const { Setor, Processo } = require('../sequelize');
+const { Setor } = require('../sequelize');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = {
     async store(req, res) {
@@ -23,5 +25,23 @@ module.exports = {
             setor.destroy()
             res.json(setor)
         })
+    },
+    async indexSetorByParams (req, res) {
+        const { nome, id } = req.body;
+        var params = {}
+        if (nome != '') {
+            params = {where : {
+                [Op.or] : [{
+                    nome : {
+                        [Op.substring] : nome
+                    }
+                }]
+            }}
+        }
+        if (id) {
+            params = {where : {...params.where, id : id}}
+        }
+        await Setor.findAll(params)
+        .then(data => res.json(data))
     }
 }
