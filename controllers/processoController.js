@@ -52,7 +52,8 @@ module.exports = {
         var params = {
             include: [
             setorParams,
-            assuntoParams
+            assuntoParams,
+            {model: Setor}
         ]}
         if (numero != '') {
             params = {...params, where : {
@@ -65,5 +66,6 @@ module.exports = {
         }
         await Processo.findAll(params)
         .then(data => res.json(data))
+
     }
 }

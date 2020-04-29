@@ -4,8 +4,8 @@ const ProcessoModel = require('./models/processo')
 const SetorModel = require('./models/setor')
 const AssuntoModel = require('./models/assunto')
 
-const sequelize = new Sequelize('process_control', 'root', 'admin', {
-  host: 'localhost',
+const sequelize = new Sequelize('process_control', 'root', 'INFOBRASS2010', {
+  host: '10.48.13.5',
   dialect: 'mysql',
   pool: {
     max: 10,
@@ -26,6 +26,7 @@ Processo.belongsTo(Caixa)
 Caixa.hasMany(Processo)
 Processo.belongsTo(Assunto)
 Assunto.hasMany(Processo)
+Processo.belongsTo(Setor)
 
 sequelize.sync({ force: false })
   .then(() => {

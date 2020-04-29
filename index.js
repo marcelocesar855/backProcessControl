@@ -6,7 +6,7 @@ const app = express()
 
 // API ENDPOINTS
 
-const port = 3000
+const port = 3030
 
 app.listen(port, () => {
     console.log(`Running on http://localhost:${port}`)
