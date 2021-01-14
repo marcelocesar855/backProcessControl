@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = express.Router();
-const { processoController, caixaController, assuntoController, setorController } = require('./controllers');
+const { processoController, caixaController, assuntoController, setorController, dossieController, pessoaController } = require('./controllers');
 
 //PROCESSOS
 routes.post('/processo', processoController.store)
@@ -51,5 +51,29 @@ routes.put('/setor/:id', setorController.update)
 routes.delete('/setor/:id', setorController.destroy)
 
 routes.post('/setor-params', setorController.indexSetorByParams)
+
+//DOSSIE
+routes.post('/dossie', dossieController.store)
+
+routes.get('/dossies', dossieController.index)
+
+routes.put('/dossie/:id', dossieController.update)
+
+routes.delete('/dossie/:id', dossieController.destroy)
+
+routes.post('/dossie-params', dossieController.indexDossieByParams)
+
+//PESSOA
+routes.post('/pessoa', pessoaController.store)
+
+routes.get('/pessoas', pessoaController.index)
+
+routes.get('/pessoas-dados', pessoaController.indexPessoaWithData)
+
+routes.put('/pessoa/:id', pessoaController.update)
+
+routes.delete('/pessoa/:id', pessoaController.destroy)
+
+routes.post('/pessoa-params', pessoaController.indexAssuntoByParams)
 
 module.exports = routes;

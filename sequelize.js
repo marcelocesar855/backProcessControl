@@ -3,9 +3,11 @@ const CaixaModel = require('./models/caixa')
 const ProcessoModel = require('./models/processo')
 const SetorModel = require('./models/setor')
 const AssuntoModel = require('./models/assunto')
+const PessoaModel = require('./models/pessoa')
+const DossieModel = require('./models/dossie')
 
-const sequelize = new Sequelize('process_control', 'root', 'INFOBRASS2010', {
-  host: '10.48.13.5',
+const sequelize = new Sequelize('process_control', 'root', 'root', {
+  host: '127.0.0.1',
   dialect: 'mysql',
   pool: {
     max: 10,
@@ -19,6 +21,8 @@ const Processo = ProcessoModel(sequelize, Sequelize)
 const Caixa = CaixaModel(sequelize, Sequelize)
 const Setor = SetorModel(sequelize, Sequelize)
 const Assunto = AssuntoModel(sequelize, Sequelize)
+const Pessoa = PessoaModel(sequelize, Sequelize)
+const Dossie = DossieModel(sequelize, Sequelize)
 
 Caixa.belongsTo(Setor)
 Setor.hasMany(Caixa)
@@ -27,6 +31,8 @@ Caixa.hasMany(Processo)
 Processo.belongsTo(Assunto)
 Assunto.hasMany(Processo)
 Processo.belongsTo(Setor)
+Pessoa.belongsTo(Dossie)
+Dossie.hasMany(Pessoa)
 
 sequelize.sync({ force: false })
   .then(() => {
@@ -37,5 +43,7 @@ module.exports = {
   Processo,
   Caixa,
   Setor,
-  Assunto
+  Assunto,
+  Pessoa,
+  Dossie
 }
