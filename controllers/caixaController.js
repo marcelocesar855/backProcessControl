@@ -40,15 +40,15 @@ module.exports = {
         .then(datas => res.json(datas))
     },
     async indexCaixaByParams (req, res) {
-        const { numero, estante, prateleira, setorId } = req.body;
+        const { numero, armario, prateleira, setorId } = req.body;
         var params = {include : [
             {model: Setor}
         ]}
         if (numero != '') {
             params = {...params, where : {numero : numero}}
         }
-        if (estante != '') {
-            params = {...params, where : {...params.where, estante : estante}}
+        if (armario != '') {
+            params = {...params, where : {...params.where, armario : armario}}
         }
         if (prateleira != '') {
             params = {...params, where : {...params.where, prateleira : prateleira}}

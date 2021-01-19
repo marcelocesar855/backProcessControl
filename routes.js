@@ -74,6 +74,6 @@ routes.put('/pessoa/:id', pessoaController.update)
 
 routes.delete('/pessoa/:id', pessoaController.destroy)
 
-routes.post('/pessoa-params', pessoaController.indexAssuntoByParams)
+routes.post('/pessoa-params', pessoaController.indexPessoaByParams)
 
 module.exports = routes;

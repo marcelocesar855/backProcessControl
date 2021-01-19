@@ -25,13 +25,13 @@ module.exports = {
         })
     },
     async indexDossieByParams (req, res) {
-        const { numero, estante, prateleira } = req.body;
+        const { numero, armario, prateleira } = req.body;
         var params = {}
         if (numero != '') {
             params = {...params, where : {numero : numero}}
         }
-        if (estante != '') {
-            params = {...params, where : {...params.where, estante : estante}}
+        if (armario != '') {
+            params = {...params, where : {...params.where, armario : armario}}
         }
         if (prateleira != '') {
             params = {...params, where : {...params.where, prateleira : prateleira}}

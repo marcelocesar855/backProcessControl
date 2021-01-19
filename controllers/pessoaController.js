@@ -39,18 +39,18 @@ module.exports = {
         var params = {include : [
             {model: Dossie}
         ]}
+        if (dossieId) {
+            params = {...params, where: {dossieId : dossieId}}
+        }
         if (nome != '') {
             params = {...params, 
-                where : {
+                where : {...params.where,
                 [Op.or] : [{
                     nome : {
                         [Op.substring] : nome
                     }
                 }]
             }}
-        }
-        if (dossieId) {
-            params = {...params, where: {dossieId : dossieId}}
         }
         if (matricula != '') {
             params = {...params,
