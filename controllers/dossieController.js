@@ -38,5 +38,11 @@ module.exports = {
         }
         await Dossie.findAll(params)
         .then(data => res.json(data))
+    },
+    async count(req, res) {
+        await Dossie.count()
+        .then(rows => {
+            res.json(rows)
+        })
     }
 }

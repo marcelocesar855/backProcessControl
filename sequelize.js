@@ -6,8 +6,8 @@ const AssuntoModel = require('./models/assunto')
 const PessoaModel = require('./models/pessoa')
 const DossieModel = require('./models/dossie')
 
-const sequelize = new Sequelize('process_control', 'root', 'root', {
-  host: '127.0.0.1',
+const sequelize = new Sequelize('process_control', 'root', 'INFOBRASS2010', {
+  host: '10.48.13.5',
   dialect: 'mysql',
   pool: {
     max: 10,

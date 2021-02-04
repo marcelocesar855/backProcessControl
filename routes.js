@@ -63,6 +63,8 @@ routes.delete('/dossie/:id', dossieController.destroy)
 
 routes.post('/dossie-params', dossieController.indexDossieByParams)
 
+routes.get('/dossie-rows', dossieController.count)
+
 //PESSOA
 routes.post('/pessoa', pessoaController.store)
 
