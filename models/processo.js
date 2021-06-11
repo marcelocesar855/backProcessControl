@@ -8,6 +8,7 @@ module.exports = (sequelize, type) => {
         numero: type.STRING,
         data: type.DATE,
         volumes: type.INTEGER,
-        interessado: type.STRING
+        interessado: type.STRING,
+        observacao: type.STRING
     })
 } 

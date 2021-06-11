@@ -32,7 +32,8 @@ module.exports = {
                 {model: Caixa, include : [
                     {model: Setor}
                 ]},
-                {model: Assunto}
+                {model: Assunto},
+                {model: Setor}
             ]
         })
         .then(data => res.json(data))
@@ -67,5 +68,11 @@ module.exports = {
         await Processo.findAll(params)
         .then(data => res.json(data))
 
+    },
+    async count(req, res) {
+        await Processo.count()
+        .then(rows => {
+            res.json(rows)
+        })
     }
 }

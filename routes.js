@@ -15,6 +15,8 @@ routes.get('/processos-dados', processoController.indexProcessosWithData)
 
 routes.post('/processos-params', processoController.indexProcessosByParams)
 
+routes.get('/processo-rows', processoController.count)
+
 //CAIXA
 routes.post('/caixa', caixaController.store)
 

@@ -6,6 +6,7 @@ module.exports = (sequelize, type) => {
           autoIncrement: true
         },
         nome: type.STRING,
-        matricula: type.STRING
+        matricula: type.STRING,
+        observacao: type.STRING
     })
 } 
