@@ -32,6 +32,8 @@ routes.get('/caixas-dados', caixaController.indexWithData)
 
 routes.post('/caixa-params', caixaController.indexCaixaByParams)
 
+routes.get('/caixa-rows', caixaController.count)
+
 //ASSUNTO
 routes.post('/assunto', assuntoController.store)
 
@@ -79,5 +81,7 @@ routes.put('/pessoa/:id', pessoaController.update)
 routes.delete('/pessoa/:id', pessoaController.destroy)
 
 routes.post('/pessoa-params', pessoaController.indexPessoaByParams)
+
+routes.get('/pessoa-rows', pessoaController.count)
 
 module.exports = routes;

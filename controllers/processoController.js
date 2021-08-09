@@ -61,7 +61,17 @@ module.exports = {
                 [Op.or] : [{
                     numero : {
                         [Op.substring] : numero
-                    }
+                    },
+                },
+                {
+                    interessado : {
+                        [Op.substring] : numero
+                    },
+                },
+                {
+                    observacao : {
+                        [Op.substring] : numero
+                    },
                 }]
             }}
         }

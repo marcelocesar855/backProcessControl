@@ -64,5 +64,11 @@ module.exports = {
         }
         await Pessoa.findAll(params)
         .then(data => res.json(data))
+    },
+    async count(req, res) {
+        await Pessoa.count()
+        .then(rows => {
+            res.json(rows)
+        })
     }
 }

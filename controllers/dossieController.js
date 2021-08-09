@@ -1,5 +1,7 @@
 
 const { Dossie } = require('../sequelize');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = {
     async store(req, res) {
@@ -28,7 +30,12 @@ module.exports = {
         const { numero, armario, prateleira } = req.body;
         var params = {}
         if (numero != '') {
-            params = {...params, where : {numero : numero}}
+            params = {...params, where : {
+                [Op.or] : [{
+                numero : {
+                    [Op.substring] : numero
+                }}]
+            }}
         }
         if (armario != '') {
             params = {...params, where : {...params.where, armario : armario}}

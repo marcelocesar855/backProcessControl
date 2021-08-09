@@ -1,5 +1,7 @@
 
 const { Caixa, Setor } = require('../sequelize');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = {
     async store(req, res) {
@@ -45,7 +47,12 @@ module.exports = {
             {model: Setor}
         ]}
         if (numero != '') {
-            params = {...params, where : {numero : numero}}
+            params = {...params, where : {
+                [Op.or] : [{
+                numero : {
+                    [Op.substring] : numero
+                }}]
+            }}
         }
         if (armario != '') {
             params = {...params, where : {...params.where, armario : armario}}
@@ -58,5 +65,11 @@ module.exports = {
         }
         await Caixa.findAll(params)
         .then(data => res.json(data))
+    },
+    async count(req, res) {
+        await Caixa.count()
+        .then(rows => {
+            res.json(rows)
+        })
     }
 }
