@@ -9,7 +9,11 @@ module.exports = {
         .then(data => res.json(data))
     },
     async index (req, res) {
-        await Dossie.findAll()
+        await Dossie.findAll({
+            order: [
+                ['numero', 'ASC'],
+            ]
+        })
         .then(datas => res.json(datas))
     },
     async update(req, res) {
